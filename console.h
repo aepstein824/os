@@ -22,5 +22,5 @@ void scrollBuffer(ConsoleBuffer *b);
 void printNewlineToBuffer(ConsoleBuffer *b);
 void printCharToBuffer(ConsoleBuffer *b, char c);
 void printStringToBuffer(ConsoleBuffer *b, const char *str);
-
+void print(const char *s);
 #endif

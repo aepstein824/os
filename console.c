@@ -1,10 +1,11 @@
 #include "console.h"
 #include "string.h"
+#include "cursor.h"
 
 static unsigned char *videoram = (unsigned char *)VRAM_BASE;
 
 void writeBufferToScreen(ConsoleBuffer *b) {
-    memcpy(videoram, b->buffer, NUM_LINES * LINE_SIZE * 2);
+    //memcpy(videoram, b->buffer, NUM_LINES * LINE_SIZE * 2);
 }
 
 void clearLineOfBuffer(ConsoleBuffer *b, int line) {
@@ -24,9 +25,9 @@ void clearBuffer(ConsoleBuffer *b) {
 }
 
 void scrollBuffer(ConsoleBuffer *b) {
-    //pretty sure this requires internal knowledge
-    //of memcpy this function isn't supposed to have,
-    //but we can't even allocate memory, so what else?
+    // pretty sure this requires internal knowledge
+    // of memcpy this function isn't supposed to have,
+    // but we can't even allocate memory, so what else?
     b->currentLine--;
     memcpy(b->buffer, &b->buffer[1][0], CONSOLE_BYTES - LINE_BYTES);
     clearLineOfBuffer(b, NUM_LINES - 1);
@@ -55,4 +56,11 @@ void printStringToBuffer(ConsoleBuffer *b, const char *str) {
         else
             printCharToBuffer(b, str[i]);
     }
+}
+
+void print(const char *s) {
+	int i;
+	for (i = 0; s[i] != 0; ++i) {
+		printCharacter(s[i]);
+	}
 }

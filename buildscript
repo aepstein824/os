@@ -1,3 +1,0 @@
-gcc -o kernel.o -c kernel.c -nostdlib -nostartfiles -nodefaultlibs
-ld -T linker.ld -o kernel.bin loader.o kernel.o
-qemu -kernel kernel.bin
